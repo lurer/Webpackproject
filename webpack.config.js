@@ -9,7 +9,7 @@ const DIST_DIR = path.resolve(__dirname, './content/dist');
 
 //VENDOR_LIBS is the libraries that rarely changes and are put in vendor....js file
 const VENDOR_LIBS = [
-  'react', 'lodash', 'react-dom', 'faker'
+  'react', 'lodash', 'react-dom', 'react-router', 'mobx', 'mobx-react'
 ];
 
 const PROD = (process.env.NODE_ENV === 'production');
