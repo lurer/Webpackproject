@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 const App = () => {
 
   return (
-    <div>¨
+    <div>
       <h1>Webpack project</h1>
     </div>
   );
