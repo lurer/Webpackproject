@@ -1,14 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useStrict } from 'mobx';
 
-const App = () => {
+import Home from './components/Home';
 
-  return (
-    <div>
-      <h1>Webpack project</h1>
-    </div>
-  );
-};
+useStrict(true);
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Home />, document.getElementById('root'));

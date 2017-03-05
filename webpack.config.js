@@ -75,8 +75,18 @@ module.exports = [{
     path: DIST_DIR,
     filename: PROD ?'[name].[chunkhash].min.js' : '[name].[chunkhash].js' //will make one file per entry point, using its name
   },
+  resolve:{
+    extensions:['.js', '.jsx'] //remove the need to import using .jsx extensions
+  },
   module:{
     rules:[
+      {//loading eslint before babel-loader. 
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        include: SRC_DIR,
+        use: 'eslint-loader'
+      },
       {
         use: 'babel-loader',
         test: /\.(js|jsx)$/,
