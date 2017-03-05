@@ -30,7 +30,7 @@ Webpack is accessed through package.json script entries.
 Configuration for Babel. It enables es2015 preset and uses the "transform-decorators-legacy" plugin to allow decorators.
 
 ### tsconfig.json
-The only thing this file is doing is enabling experimentalDecorators. Without this file and configuration my editor Visual Studio Code complains about the use of decorators, even though they are allowed and works when used.
+The only thing this file is doing is enabling experimentalDecorators. Without this file and configuration, my editor Visual Studio Code complains about the use of decorators, even though they are allowed and works when used.
 
 ### .eslintrc
 Basically, this configuration I picked up from some blog post, and aside from adding and changing some rules, I have not much knowledge about the parameters. 
