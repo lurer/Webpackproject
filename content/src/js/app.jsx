@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
-
-import Home from './components/Home';
+import Routes from './Router';
 
 useStrict(true);
 
-ReactDOM.render(<Home />, document.getElementById('root'));
+ReactDOM.render(<Routes />, document.getElementById('root'));
