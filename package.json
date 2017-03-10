@@ -5,10 +5,8 @@
   "main": "app.js",
   "scripts": {
     "clean": "rimraf content/dist",
-    "build": "npm run clean && webpack",
-    "build:prod": "SET \"NODE_ENV=production\" && npm run clean && webpack -p",
-    "serve": "webpack-dev-server",
-    "lint": "eslint src"
+    "build": "SET \"NODE_ENV=production\" && npm run clean && webpack --config=webpack.prod.js -p",
+    "serve": "webpack-dev-server --config=webpack.dev.js"
   },
   "repository": "https://github.com/lurer/Webpackproject",
   "author": "",
@@ -43,6 +41,10 @@
     "sass-loader": "^6.0.2",
     "style-loader": "^0.13.2",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack-dev-server": "^2.4.1",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0"
   }
 }
