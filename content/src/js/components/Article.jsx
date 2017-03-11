@@ -1,11 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
 
-@observer
-export default class Article extends React.Component{
+const Article = observer(() => <div><h2>Article</h2></div>);
 
-    render(){
-        return <div></div>
-    }
-}
+export default Article;
+

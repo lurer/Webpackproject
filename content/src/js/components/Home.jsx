@@ -3,14 +3,12 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 
-@observer
-export default class Home extends React.Component {
+const obj = observable({
+  name: 'Espen',
+});
 
-  @observable obj = {
-    name: 'Espen',
-  }
+const Home = observer(() => <h2>Hello {this.obj.name}</h2>);
 
-  render() {
-    return <h2>Hello {this.obj.name}</h2>;
-  }
-}
+
+export default Home;
+
