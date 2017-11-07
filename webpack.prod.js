@@ -15,7 +15,7 @@ config.module.rules.push(
     {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use:'css-loader?sourceMap!sass-loader?sourceMap'
+          use:'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
         }),
         test: /\.scss$/
     }
