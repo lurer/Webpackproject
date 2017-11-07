@@ -1,14 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
+import Header from './Header';
 
-
-const obj = observable({
-  name: 'Espen',
-});
-
-const Home = observer(() => <h2>Hello {this.obj.name}</h2>);
-
+const Home = observer(({ children }) =>
+  <div className="container">
+    <Header />
+    {children}
+  </div>,
+);
 
 export default Home;
-
