@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf content/dist",
     "build": "SET \"NODE_ENV=production\" && npm run clean && webpack --config=webpack.prod.js -p",
-    "serve": "webpack-dev-server --config=webpack.dev.js"
+    "serve": "SET \"NODE_ENV=development\" && webpack-dev-server --config=webpack.dev.js"
   },
   "repository": "https://github.com/lurer/Webpackproject",
   "author": "",
@@ -17,7 +17,8 @@
     "mobx-react": "^4.3.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router": "^4.2.0"
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
