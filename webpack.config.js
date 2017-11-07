@@ -28,13 +28,13 @@ module.exports = {
   },
   module:{
     rules:[
-      {//loading eslint before babel-loader. 
-        enforce: 'pre',
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        include: SRC_DIR,
-        use: 'eslint-loader'
-      },
+      // {//loading eslint before babel-loader. 
+      //   enforce: 'pre',
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   include: SRC_DIR,
+      //   use: 'eslint-loader'
+      // },
       {
         use: 'babel-loader',
         test: /\.(js|jsx)$/,
@@ -50,6 +50,14 @@ module.exports = {
     //Will automatically add all script files generated into an index.html in dist folder
     new HtmlWebpackPlugin({
       template: SRC_DIR +'/index.html' //file used as template
+    }),
+    new webpack.LoaderOptionsPlugin({
+        options: {
+            context: SRC_DIR,
+            postcss: [ // <---- postcss configs go here under LoadOptionsPlugin({ options: { ??? } })
+                require('postcss-cssnext')
+            ]
+        }
     })
   ]
 }
