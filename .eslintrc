@@ -10,7 +10,11 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "linebreak-style": 0,
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }]
   },
   "plugins": [
     "react"
