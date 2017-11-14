@@ -51,6 +51,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: SRC_DIR +'/index.html' //file used as template
     }),
+
+    //Postcss import to implement cssnext. Enables Autoprefixer as it is part of cssnext.
     new webpack.LoaderOptionsPlugin({
         options: {
             context: SRC_DIR,

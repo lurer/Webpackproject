@@ -13,22 +13,14 @@ config.entry.bundle = [
     SRC_DIR + '/sass/main.scss'
 ]
 
-config.output.publicPath = '/';
+config.output.publicPath = '/'; //Want to use the same dir as the production config.
 config.output.filename = '[name].js' //will make one file per entry point, using its name
 
 config.devServer = {
-    //contentBase: DIST_DIR,
-    publicPath: '/',
+    publicPath: '/',    //Want to use the same dir as the production config.
     hot: true,
     inline: true,
-    historyApiFallback: true,
-    // proxy: {
-    //   '**': {
-    //     target: SERVER,
-    //     secure: false,
-    //     changeOrigin: true
-    //   }
-    // }
+    historyApiFallback: true
   }
 
   config.module.rules.push({
