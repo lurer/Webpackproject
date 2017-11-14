@@ -1,32 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { hashHistory } from 'react-router';
 
+import Header from './components/Header';
 import Home from './components/Home';
+import Article from './components/Article';
+import Product from './components/Product';
 
 
-const componentRoutes = {
-  component: Home,
-  path: '/',
-  IndexRoute: { component: Home },
-  childRoutes: [
-    {
-      path: '/article',
-      getComponent(location, cb) {
-        System.import('./components/Article')
-          .then(module => cb(null, module.default));
-      },
-    },
-    {
-      path: '/product',
-      getComponent(location, cb) {
-        System.import('./components/Product')
-          .then(module => cb(null, module.default));
-      },
-    },
-  ],
-};
+const PrimaryLayout = () => (
 
-const Routes = () => <Router history={hashHistory} routes={componentRoutes} />;
+  <div className="container primary-layout">
+    <header>
+      <Header />  
+    </header>
+    
+    <main>
+      <Route path="/" exact component={Home}/>
+      <Route path="/article" component={Article}/>
+      <Route path="/product" component={Product}/>
+    </main>
+  </div>
+);
 
+
+const Routes = () => (
+
+  <BrowserRouter>
+    <PrimaryLayout />    
+  </BrowserRouter>
+)
 export default Routes;
