@@ -28,13 +28,13 @@ module.exports = {
   },
   module:{
     rules:[
-      // {//loading eslint before babel-loader. 
-      //   enforce: 'pre',
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   include: SRC_DIR,
-      //   use: 'eslint-loader'
-      // },
+      {//loading eslint before babel-loader. 
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        include: SRC_DIR,
+        use: 'eslint-loader'
+      },
       {
         use: 'babel-loader',
         test: /\.(js|jsx)$/,
