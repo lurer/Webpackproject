@@ -13,12 +13,12 @@ config.entry.bundle = [
     SRC_DIR + '/sass/main.scss'
 ]
 
-config.output.publicPath = '/static/';
+config.output.publicPath = '/';
 config.output.filename = '[name].js' //will make one file per entry point, using its name
 
 config.devServer = {
-    contentBase: DIST_DIR,
-    publicPath: '/static/',
+    //contentBase: DIST_DIR,
+    publicPath: '/',
     hot: true,
     inline: true,
     historyApiFallback: true,
