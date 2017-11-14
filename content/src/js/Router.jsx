@@ -1,32 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-
+import AsyncComponent from './utilities/AsyncComponent';
 import Header from './components/Header';
 import Home from './components/Home';
 
-
-const asyncComponent = getComponent =>
-  class AsyncComponent extends React.Component {
-    static Component = null
-    state = { Component: AsyncComponent.Component };
-
-    componentWillMount = () => {
-      if (!this.state.Component) {
-        getComponent().then(({ default: Component }) => {
-          AsyncComponent.Component = Component;
-          this.setState({ Component });
-        });
-      }
-    }
-
-    render = () => {
-      const { Component } = this.state;
-      if (Component) {
-        return <Component {...this.props} />;
-      }
-      return null;
-    }
-  };
 
 const PrimaryLayout = () => (
 
@@ -37,8 +14,8 @@ const PrimaryLayout = () => (
 
     <main>
       <Route path="/" exact component={Home} />
-      <Route path="/article" component={asyncComponent(() => import('./components/Article'))} />
-      <Route path="/product" component={asyncComponent(() => import('./components/Product'))} />
+      <Route path="/article" component={AsyncComponent(() => import('./components/Article'))} />
+      <Route path="/product" component={AsyncComponent(() => import('./components/Product'))} />
     </main>
   </div>
 );
