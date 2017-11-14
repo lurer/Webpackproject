@@ -1,2 +1,0 @@
-webpackJsonp([1],{85:function(e,t,u){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var l=u(0),n=function(e){return e&&e.__esModule?e:{default:e}}(l),r=u(18),a=(0,r.observer)(function(){return n.default.createElement("div",null,n.default.createElement("h2",null,"Article"))});t.default=a}});
-//# sourceMappingURL=1.754a79489bb915ee0396.js.map
