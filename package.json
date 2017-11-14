@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf content/dist",
     "build": "SET \"NODE_ENV=production\" && npm run clean && webpack --config=webpack.prod.js -p",
-    "serve": "SET \"NODE_ENV=development\" && webpack-dev-server --config=webpack.dev.js"
+    "serve": "SET \"NODE_ENV=development\" && npm run clean && webpack-dev-server --config=webpack.dev.js"
   },
   "repository": "https://github.com/lurer/Webpackproject",
   "author": "",
