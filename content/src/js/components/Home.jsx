@@ -1,12 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import Header from './Header';
 
 const Home = observer(({ children }) =>
-  <div className="container">
-    <Header />
+  <div>
+    <h1>Home</h1>
     {children}
-  </div>,
+  </div>
 );
 
 export default Home;
