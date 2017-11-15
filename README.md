@@ -5,8 +5,9 @@ My intent is to add the webpack modules and functionality I would like to use in
 ## What I want to achieve
 * Transform JSX to JS
 * Convert SASS to CSS
-* Two build types, development and production. 
-  * production build should minify files, add map files, and make React production ready by turning off certain react functionality to improve speed.
+* Get familiar with webpack configuration, modules, loaders etc.
+  * Two build configurations, development and production. 
+  * Production build should minify files, add map files, and make React production ready by turning off certain react functionality to improve speed.
 * Some kind of "hot reload" to build changes and render on the fly.
 * Code splitting.
   * Static libraries that rarely change should be compiled to a separate file. This keeps the file easily cachable.
@@ -22,9 +23,8 @@ The repo uses Webpack together with several other components commonly used. I ha
 ### package.json
 Webpack is accessed through package.json script entries. 
 * clean: It deletes the **dist** folder.
-* build: Runs webpack in "non-production" mode, after running clean first
-* build:prod: Same as 'build', but also sets "production" variable and uses the -p flag to make react production ready.
-* serve: Runs the Webpack dev server
+* build: Sets "production" variable and uses the -p flag to make react production ready.
+* serve: Runs the Webpack dev server. runs 'clean' task first, so that dev files do not conflict with previously generated production files.
 
 ### .babelrc
 Configuration for Babel. It enables es2015 preset and uses the "transform-decorators-legacy" plugin to allow decorators.
