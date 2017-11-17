@@ -15,9 +15,9 @@ My intent is to add the webpack modules and functionality I would like to use in
   * User defined code should be the only files that will be reuilt on every save, and will enforce new load from the client.
   * By using *System.import* in the Js-code, separate js files will be generated, and loaded on the fly.
 * Use of decorators.
-* Use Eslint to conform to best practices in Javascript React, and ES5/6
+* Use Eslint to conform to best practices in Javascript React, and ES6
 
-## Modules in play
+## Configuration files
 The repo uses Webpack together with several other components commonly used. I have tried to add a basic configuration of each of them.
 
 ### package.json
