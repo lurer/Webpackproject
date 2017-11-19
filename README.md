@@ -6,8 +6,8 @@ My intent is to add the webpack modules and functionality I would like to use in
 * Transform JSX to JS
 * Convert SASS to CSS
 * Two webpack build configurations: 
- * Developement: 
-  * Webpack dev-server with Hot Reload
+* Developement: 
+   * Webpack dev-server with Hot Reload
  * Production: 
   * Compile to production ready React code.
   * Common modules shared betrween entry points will be placed in separate chunk files.
