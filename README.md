@@ -6,18 +6,18 @@ My intent is to add the webpack modules and functionality I would like to use in
 * Transform JSX to JS
 * Convert SASS to CSS
 * Two webpack build configurations: 
- * Developement: 
-   * Webpack dev-server with Hot Reload
- * Production: 
-  * Compile to production ready React code.
-  * Common modules shared betrween entry points will be placed in separate chunk files.
-  * Minified and uglified files for optimized file size.
- * Common for both configurations:
-  * Code splitting.
-   * Static libraries that rarely change should be compiled to a separate file. This keeps the file easily cachable.
+  * Developement: 
+    * Webpack dev-server with Hot Reload
+  * Production: 
+    * Compile to production ready React code.
+    * Common modules shared betrween entry points will be placed in separate chunk files.
+    * Minified and uglified files for optimized file size.
+  * Common for both configurations:
+    * Code splitting.
+      * Static libraries that rarely change should be compiled to a separate file. This keeps the file easily cachable.
     * Duplicate dependencies will be loaded into the vendor.xxxx.js file one time.
-   * User defined code should be the only files that will be rebuilt on every save, and will enforce new load from the client.
-   * By using *import* in the Js-code, separate js files will be generated, and loaded on the fly.
+    * User defined code should be the only files that will be rebuilt on every save, and will enforce new load from the client.
+    * By using *import* in the Js-code, separate js files will be generated, and loaded on the fly.
 * Use Eslint to conform to best practices in Javascript React, and ES6
 
 ## Configuration files
