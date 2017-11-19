@@ -15,7 +15,7 @@ My intent is to add the webpack modules and functionality I would like to use in
  * Common for both configurations:
   * Code splitting.
    * Static libraries that rarely change should be compiled to a separate file. This keeps the file easily cachable.
-     * Duplicate dependencies will be loaded into the vendor.xxxx.js file one time.
+    * Duplicate dependencies will be loaded into the vendor.xxxx.js file one time.
    * User defined code should be the only files that will be rebuilt on every save, and will enforce new load from the client.
    * By using *import* in the Js-code, separate js files will be generated, and loaded on the fly.
 * Use Eslint to conform to best practices in Javascript React, and ES6
