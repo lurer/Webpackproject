@@ -44,25 +44,55 @@ Also, I'm extending AirBnB Eslint [https://www.npmjs.com/package/eslint-config-a
 ## Webpack config
 To keep the webpack config clean I have split the config into 3 files, where the npm command for running webpack specifies which config files that should be used.
 
-**webpack.config.js** contains the common configuration for both production and development use cases.
+### webpack.config.js 
+Contains the common configuration for both production and development use cases.
 
 `VENDOR_LIBS` lists the packages that are static, and rarely changing. An entry is added for these packages, so that all those packages are loaded into a *vendor.js* file. As these packages rarely changes, it is a higher chance that this file will be cached in the user's browsers.
 
 `devtool` is dependent on the *NODE_ENV* variable. If in production source maps are generated. If in development, devtool is set to *eval* which is much faster.
 
-
+The following snippet shows how the loaders for transpiling React and Javascript ES6 code into ES5 code. I am enforcing the *eslint-loader* to be loaded before the *babel-loader*, so that it can analyze the code and prevent compilation and provide tips for improving the code quality. 
 ```javascript
- {//loading eslint before babel-loader. 
-   enforce: 'pre',
-   test: /\.(js|jsx)$/,
-   exclude: /node_modules/,
-   include: SRC_DIR,
-   use: 'eslint-loader'
+ module:{
+   rules:[
+     {//loading eslint before babel-loader. 
+       enforce: 'pre',
+       test: /\.(js|jsx)$/,
+       exclude: /node_modules/,
+       include: SRC_DIR,
+       use: 'eslint-loader'
+     },
+     {
+       use: 'babel-loader',
+       test: /\.(js|jsx)$/,
+       exclude: /node_modules/,
+       include: SRC_DIR
+     }
+   ]
  },
- {
-   use: 'babel-loader',
-   test: /\.(js|jsx)$/,
-   exclude: /node_modules/,
-   include: SRC_DIR
- }
 ```
+
+The following snippet specifies a HTML template file that will be used as a mounting point for compiled production files. All CSS and JS files will be added dynamically to this HTML template, and this is especially practical when using *chunks* where common code between different entries will be extracted and added into chunk files and loaded when necessary.
+```javascript
+ //Will automatically add all script files generated into an index.html in dist folder
+ new HtmlWebpackPlugin({
+   template: SRC_DIR +'/index.html' //file used as template
+ }),
+```
+
+Below follows the code snippet that loads `postcss-cssnext` module into webpack. PostCSS allows for a lot of customization, and the only functionality I wanted, comes builtin and preconfigured, so I have not spent a lot of time tweking or exploring this module.
+As the code comment says, `Autoprefixer` is added by using the PostCSS loader. Autoprefixer adds bowser specific css code for all css code that is currently not supported equally well in all browsers.
+```javascript
+ //Postcss import to implement cssnext. Enables Autoprefixer as it is part of cssnext.
+ new webpack.LoaderOptionsPlugin({
+     options: {
+         context: SRC_DIR,
+         postcss: [ // <---- postcss configs go here under LoadOptionsPlugin({ options: { ??? } })
+             require('postcss-cssnext')
+         ]
+     }
+ })
+```
+
+### webconfig.dev.js
+To be continued :)
