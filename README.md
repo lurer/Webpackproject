@@ -44,6 +44,25 @@ Also, I'm extending AirBnB Eslint [https://www.npmjs.com/package/eslint-config-a
 ## Webpack config
 To keep the webpack config clean I have split the config into 3 files, where the npm command for running webpack specifies which config files that should be used.
 
-**webpack.config.js** contains the common configuration for both production and development use cases. 
-*VENDOR_LIBS* lists the packages that are static, and rarely changing. An entry is added for these packages, so that all those packages are loaded into a *vendor.js* file. As these packages rarely changes, it is a higher chance that this file will be cached in the user's browsers.
+**webpack.config.js** contains the common configuration for both production and development use cases.
 
+`VENDOR_LIBS` lists the packages that are static, and rarely changing. An entry is added for these packages, so that all those packages are loaded into a *vendor.js* file. As these packages rarely changes, it is a higher chance that this file will be cached in the user's browsers.
+
+`devtool` is dependent on the *NODE_ENV* variable. If in production source maps are generated. If in development, devtool is set to *eval* which is much faster.
+
+
+```javascript
+ {//loading eslint before babel-loader. 
+   enforce: 'pre',
+   test: /\.(js|jsx)$/,
+   exclude: /node_modules/,
+   include: SRC_DIR,
+   use: 'eslint-loader'
+ },
+ {
+   use: 'babel-loader',
+   test: /\.(js|jsx)$/,
+   exclude: /node_modules/,
+   include: SRC_DIR
+ }
+```
