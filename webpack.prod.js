@@ -8,28 +8,37 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const SRC_DIR = path.resolve(__dirname, './content/src');
 const DIST_DIR = path.resolve(__dirname, './content/dist');
 
-config.entry.bundle = [SRC_DIR +'/js/app.jsx', SRC_DIR + '/sass/main.scss'] //Our code
+config.entry.bundle = [SRC_DIR + '/js/app.jsx', SRC_DIR + '/sass/main.scss'] //Our code
 config.output.filename = '[name].[chunkhash].js' //will make one file per entry point, using its name
 
 config.module.rules.push(
     {
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use:'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
+            fallback: 'style-loader',
+            use: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
         }),
         test: /\.scss$/
     }
 )
 
+config.optimization["minimizer"] = [
+    new UglifyJsPlugin({
+        test: /\.js($|\?)/i,
+        uglifyOptions: {
+            compress: {
+                warnings: false,
+                dead_code: true,
+                unused: true
+            }
+        },
+        sourceMap: true
+    })
+]
+
 config.plugins.push(
     //will find duplicate depdendencies and add to vendor bundle
-    new webpack.optimize.CommonsChunkPlugin({ 
-      names: ['vendor', 'manifest']
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {warnings: false},
-        minimize:true,
-        sourceMap: true
+    new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest']
     }),
     new ExtractTextPlugin('[name].css'),
     new OptimizeCssAssetsPlugin()

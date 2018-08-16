@@ -7,9 +7,7 @@ const DIST_DIR = path.resolve(__dirname, './content/dist');
 
 
 config.entry.bundle = [
-    SRC_DIR +'/js/app.jsx', 
-    'webpack/hot/only-dev-server', 
-    'webpack-dev-server/client?http://0.0.0.0:8080',
+    SRC_DIR + '/js/app.jsx',
     SRC_DIR + '/sass/main.scss'
 ]
 
@@ -21,10 +19,10 @@ config.devServer = {
     hot: true,
     inline: true,
     historyApiFallback: true
-  }
+}
 
-  config.module.rules.push({
-    use:['style-loader', 'css-loader', 'postcss-loader','sass-loader'],
+config.module.rules.push({
+    use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
     test: /\.scss$/
 })
 
