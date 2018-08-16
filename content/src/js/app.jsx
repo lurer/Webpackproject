@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as mobx from 'mobx';
+import { configure } from 'mobx';
 import Routes from './Router';
 
-mobx.useStrict(true);
+configure({
+  enforceActions: true,
+});
 
 ReactDOM.render(<Routes />, document.getElementById('root'));
