@@ -15,19 +15,19 @@ const PROD = (process.env.NODE_ENV === 'production');
 
 
 module.exports = {
-  
+
   entry: {
     vendor: VENDOR_LIBS //vendor code (dependencies)
   },
-  devtool: PROD ? 'source-map': 'eval',
+  devtool: PROD ? 'source-map' : 'eval',
   output: {
-    path: DIST_DIR,
+    path: DIST_DIR
   },
-  resolve:{
-    extensions:['.js', '.jsx'] //remove the need to import using .jsx extensions
+  resolve: {
+    extensions: ['.js', '.jsx'] //remove the need to import using .jsx extensions
   },
-  module:{
-    rules:[
+  module: {
+    rules: [
       {//loading eslint before babel-loader. 
         enforce: 'pre',
         test: /\.(js|jsx)$/,
@@ -43,17 +43,17 @@ module.exports = {
       }
     ]
   },
-  optimization:{
-      splitChunks:{
-          cacheGroups:{
-              vendor:{
-                  chunks: 'all',
-                  name: 'vendor',
-                  test: 'vendor',
-                  enforce: true
-              }
-          }
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          name: 'vendor',
+          test: 'vendor',
+          enforce: true
+        }
       }
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -61,17 +61,17 @@ module.exports = {
     }),
     //Will automatically add all script files generated into an index.html in dist folder
     new HtmlWebpackPlugin({
-      template: SRC_DIR +'/index.html' //file used as template
+      template: SRC_DIR + '/index.html' //file used as template
     }),
 
     //Postcss import to implement cssnext. Enables Autoprefixer as it is part of cssnext.
     new webpack.LoaderOptionsPlugin({
-        options: {
-            context: SRC_DIR,
-            postcss: [ // <---- postcss configs go here under LoadOptionsPlugin({ options: { ??? } })
-                require('postcss-cssnext')
-            ]
-        }
+      options: {
+        context: SRC_DIR,
+        postcss: [ // <---- postcss configs go here under LoadOptionsPlugin({ options: { ??? } })
+          require('postcss-cssnext')
+        ]
+      }
     })
   ]
 }

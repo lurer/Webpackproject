@@ -1,24 +1,27 @@
-var webpack = require('webpack');
-var config = require('./webpack.config');
-var path = require('path');
+const config = require('./webpack.config');
+const path = require('path');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const SRC_DIR = path.resolve(__dirname, './content/src');
 const DIST_DIR = path.resolve(__dirname, './content/dist');
 
-config.entry.bundle = [SRC_DIR + '/js/app.jsx', SRC_DIR + '/sass/main.scss'] //Our code
+config.entry.bundle = [
+    SRC_DIR + '/js/app.jsx', 
+    SRC_DIR + '/sass/main.scss'
+]
 config.output.filename = '[name].[chunkhash].js' //will make one file per entry point, using its name
 
-config.module.rules.push(
-    {
-        use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
-        }),
-        test: /\.scss$/
-    }
+config.devtool = 'source-map';
+
+config.plugins.push(
+    new ExtractTextPlugin({
+        filename: '[name].css',
+        allChunks: true
+    }),
+    new OptimizeCssAssetsPlugin()
 )
 
 config.optimization["minimizer"] = [
@@ -35,14 +38,16 @@ config.optimization["minimizer"] = [
     })
 ]
 
-config.plugins.push(
-    //will find duplicate depdendencies and add to vendor bundle
-    new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendor', 'manifest']
-    }),
-    new ExtractTextPlugin('[name].css'),
-    new OptimizeCssAssetsPlugin()
+config.module.rules.push(
+    {
+        use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
+        }),
+        test: /\.(scss|css)$/
+    }
 )
+
 
 
 module.exports = config;
