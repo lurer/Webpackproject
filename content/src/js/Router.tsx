@@ -1,10 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { asyncComponent } from 'react-async-component';
 import AsyncComponent from './utilities/AsyncComponent';
 import Header from './components/Header';
 import Home from './components/Home';
 
 
+/* const component = (name: string, path: string) => asyncComponent({
+  name: name,
+  resolve: () => import(path)
+});
+ */
 const PrimaryLayout = () => (
 
   <div className="container primary-layout">

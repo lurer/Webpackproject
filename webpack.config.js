@@ -20,7 +20,7 @@ module.exports = {
 
   entry: {
     vendor: VENDOR_LIBS, //vendor code (dependencies)
-    bundle: SRC_DIR + '/js/app.jsx'
+    bundle: SRC_DIR + '/js/app.tsx'
   },
   devtool: PROD ? 'source-map' : 'eval',
   output: {
