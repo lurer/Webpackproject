@@ -8,10 +8,6 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SRC_DIR = path.resolve(__dirname, './content/src');
 const DIST_DIR = path.resolve(__dirname, './content/dist');
 
-config.entry.bundle = [
-    SRC_DIR + '/js/app.jsx', 
-    SRC_DIR + '/sass/main.scss'
-]
 config.output.filename = '[name].[chunkhash].js' //will make one file per entry point, using its name
 
 config.devtool = 'source-map';

@@ -1,6 +1,8 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 const SRC_DIR = path.resolve(__dirname, './content/src');
 const DIST_DIR = path.resolve(__dirname, './content/dist');
@@ -17,17 +19,28 @@ const PROD = (process.env.NODE_ENV === 'production');
 module.exports = {
 
   entry: {
-    vendor: VENDOR_LIBS //vendor code (dependencies)
+    vendor: VENDOR_LIBS, //vendor code (dependencies)
+    bundle: SRC_DIR + '/js/app.jsx'
   },
   devtool: PROD ? 'source-map' : 'eval',
   output: {
     path: DIST_DIR
   },
   resolve: {
-    extensions: ['.js', '.jsx'] //remove the need to import using .jsx extensions
+    extensions: ['.js', '.jsx', '.ts', '.tsx'] 
   },
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        use: {
+          loader: "awesome-typescript-loader",
+          options: {
+            //useCache: true, 
+            //useBabel: true
+          }
+        }
+      },
       {//loading eslint before babel-loader. 
         enforce: 'pre',
         test: /\.(js|jsx)$/,
